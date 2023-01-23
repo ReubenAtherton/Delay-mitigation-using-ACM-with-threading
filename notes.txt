@@ -1,0 +1,41 @@
+ACM NOTES:
+
+The rate of the game is Rg. To calculate this you do 1/delay per character. In this case the delay per character is 36 or 44 (or 0.5/18 and 0.5/22)
+At the top left of the screen, the game is printing less characters within the same amount of time as the bottom right of the screen does.
+
+Therefore top left rate = slower i.e. less characters per second
+          bottom right rate = faster i.e. more characters per second
+
+We now have Rg = 1/44 at the worst case (bottom right) and Rg = 1/36 at the best case (top left)
+
+Rate of Delay:
+We know Rd < Rg and so for draft experiment choose Rd as 10% less than Rg. Say for now, Rd is 0.03 (1/33), where the delay per character is 30 chars per second (10% less).
+Choosing the Rd as less than Rg means that there will be a data accumulation in the buffer. This means we can now calculate the rate of data accumulation.
+
+Rate of Data accumulation, Rb:
+The difference between Rd and Rg is the rate of data accumulation, Rb. Given by Rb = Rg - Rd.
+If you leave the game running with "usleep(30000)" then the lag slowly increases over time as more and more data accumulates. This is what makes the
+buffer delay observable.
+
+The ACM:
+Takes 3 slots of inputs and reads the freshest inputs.
+----- <----- WRITES
+----- <----- READS
+-----
+
+Uses NOT function.
+NOT function implemented using a 3x3 array, wherever the pointer is, it is not one of those values.
+Example coords (0,2) must be 1 because 1 is NOT included in the coordinates.
+
+
+make usleep bigger than 500 000 but approx 500 000 + 10% of 500 000
+
+flushed when new line is found, otherwise you do it manually
+
+LOOK at using stderr to error check, debug information
+
+delay must be slower than game (10%) and acm must be slower than delay (10%)
+
+acm outout rate is lower than the consumption rate of the buffer
+
+game - acm - buffer - delay - terminal
