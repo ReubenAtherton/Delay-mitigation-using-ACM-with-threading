@@ -30,3 +30,6 @@ Open second terminal window inside folder destination:
 Next, inside first terminal window use command:
 
     ./game | tee myfifo | ./acm | ./delay
+    
+--- 
+I achieved a 70% grade for this work
